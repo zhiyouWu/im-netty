@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author: wuzhiyou
  * @date: 2019/5/6 16:52
- * @description：
+ * @description： 服务端启动程序
  */
 public class NettyServer {
 
@@ -37,7 +37,6 @@ public class NettyServer {
                         nioSocketChannel.pipeline().addLast(new ServerHandler());
                     }
                 });
-
         bind(serverBootstrap, PORT);
     }
 

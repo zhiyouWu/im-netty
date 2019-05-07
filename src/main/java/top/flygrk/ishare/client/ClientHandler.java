@@ -20,6 +20,11 @@ import java.util.UUID;
  */
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * 处理登陆请求
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println(new Date() + ": 客户端开始登陆");
@@ -33,6 +38,12 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         ctx.channel().writeAndFlush(buf);
     }
 
+    /**
+     *
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 

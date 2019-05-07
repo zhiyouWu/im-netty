@@ -17,7 +17,7 @@ import java.util.UUID;
  *
  * @author: wuzhiyou
  * @date: 2019/5/7 10:08
- * @description：
+ * @description： 测试编解码及序列化
  */
 public class PacketCodeCTest {
 

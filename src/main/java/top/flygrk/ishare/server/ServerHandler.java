@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author: wuzhiyou
  * @date: 2019/5/6 17:05
- * @description：
+ * @description： 服务端处理客户端的登陆请求
  */
 public class ServerHandler extends ChannelInboundHandlerAdapter{
 
