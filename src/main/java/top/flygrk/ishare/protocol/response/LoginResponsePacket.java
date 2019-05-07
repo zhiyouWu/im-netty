@@ -10,7 +10,7 @@ import static top.flygrk.ishare.protocol.command.Command.LOGIN_RESPONSE;
  *
  * @author: wuzhiyou
  * @date: 2019/5/6 17:24
- * @description：
+ * @description： 登陆响应数据格式对象
  */
 @Data
 public class LoginResponsePacket  extends Packet {

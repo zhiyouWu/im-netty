@@ -1,6 +1,7 @@
 package top.flygrk.ishare.protocol.request;
 
 import lombok.Data;
+import top.flygrk.ishare.protocol.Packet;
 
 import static top.flygrk.ishare.protocol.command.Command.MESSAGE_REQUEST;
 
@@ -12,7 +13,7 @@ import static top.flygrk.ishare.protocol.command.Command.MESSAGE_REQUEST;
  * @description： 客户端发送至服务端的消息对象
  */
 @Data
-public class MessageRequestPacket {
+public class MessageRequestPacket extends Packet {
     /**
      * 消息
      */
@@ -22,6 +23,7 @@ public class MessageRequestPacket {
      * 指令
      * @return
      */
+    @Override
     public Byte getCommand() {
         return MESSAGE_REQUEST;
     }

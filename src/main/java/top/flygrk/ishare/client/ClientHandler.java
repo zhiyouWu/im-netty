@@ -7,6 +7,8 @@ import top.flygrk.ishare.protocol.Packet;
 import top.flygrk.ishare.protocol.PacketCodeC;
 import top.flygrk.ishare.protocol.request.LoginRequestPacket;
 import top.flygrk.ishare.protocol.response.LoginResponsePacket;
+import top.flygrk.ishare.protocol.response.MessageResponsePacket;
+import top.flygrk.ishare.utils.LoginUtil;
 
 import java.util.Date;
 import java.util.UUID;
@@ -16,7 +18,7 @@ import java.util.UUID;
  *
  * @author: wuzhiyou
  * @date: 2019/5/7 9:58
- * @description：
+ * @description： 客户端处理器
  */
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
@@ -42,10 +44,13 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             LoginResponsePacket responsePacket = (LoginResponsePacket) packet;
             if (responsePacket.isSuccess()) {
                 System.out.println(new Date() + ": 客户端登陆成功！");
+                LoginUtil.markAsLogin(ctx.channel());
             } else {
                 System.out.println(new Date() + "客户端登陆失败，原因：" + responsePacket.getReason());
             }
+        } else if (packet instanceof MessageResponsePacket) {
+            MessageResponsePacket messageResponsePacket = (MessageResponsePacket) msg;
+            System.out.println(new Date() + ": 收到服务端的消息： " + messageResponsePacket.getMessage());
         }
-
     }
 }

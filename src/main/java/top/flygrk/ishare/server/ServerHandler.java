@@ -6,7 +6,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import top.flygrk.ishare.protocol.Packet;
 import top.flygrk.ishare.protocol.PacketCodeC;
 import top.flygrk.ishare.protocol.request.LoginRequestPacket;
+import top.flygrk.ishare.protocol.request.MessageRequestPacket;
 import top.flygrk.ishare.protocol.response.LoginResponsePacket;
+import top.flygrk.ishare.protocol.response.MessageResponsePacket;
 
 import java.util.Date;
 
@@ -45,6 +47,15 @@ public class ServerHandler extends ChannelInboundHandlerAdapter{
 
             //登陆相应
             ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode(ctx.alloc(), loginResponsePacket);
+            ctx.channel().writeAndFlush(responseByteBuf);
+        } else if (packet instanceof MessageRequestPacket) {
+            //处理消息
+            MessageRequestPacket messageRequestPacket = (MessageRequestPacket) packet;
+            System.out.println(new Date() + ": 收到客户端消息： " + messageRequestPacket.getMessage());
+
+            MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
+            messageRequestPacket.setMessage("服务端恢复【" + messageResponsePacket.getMessage() + "】");
+            ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode(ctx.alloc(), messageResponsePacket);
             ctx.channel().writeAndFlush(responseByteBuf);
         }
     }
