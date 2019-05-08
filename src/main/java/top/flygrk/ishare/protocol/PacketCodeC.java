@@ -3,13 +3,15 @@ package top.flygrk.ishare.protocol;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import top.flygrk.ishare.protocol.request.LoginRequestPacket;
+import top.flygrk.ishare.protocol.request.MessageRequestPacket;
 import top.flygrk.ishare.protocol.response.LoginResponsePacket;
+import top.flygrk.ishare.protocol.response.MessageResponsePacket;
 import top.flygrk.ishare.serialize.Serializer;
 import top.flygrk.ishare.serialize.impl.JSONSerializer;
 import java.util.HashMap;
 import java.util.Map;
-import static top.flygrk.ishare.protocol.command.Command.LOGIN_REQUEST;
-import static top.flygrk.ishare.protocol.command.Command.LOGIN_RESPONSE;
+
+import static top.flygrk.ishare.protocol.command.Command.*;
 
 /**
  * All rights Reserved, Designed by wuzhiyou@utry.cn
@@ -28,6 +30,8 @@ public class PacketCodeC {
         packetTypeMap = new HashMap<>();
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
         packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
+        packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
+        packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
         serializerMap.put(serializer.getSerializerAlogrithm(), serializer);
